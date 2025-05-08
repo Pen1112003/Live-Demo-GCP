@@ -23,9 +23,10 @@
 **/values.dev.yaml
 
 # Giữ lại các tệp cần thiết
-!ProductAPI/ProductAPI.csproj
-!ProductAPI/Dockerfile
-!ProductAPI/cloudbuild.yaml
+!/ProductAPI/
+!/ProductAPI/ProductAPI.csproj
+!/ProductAPI/Dockerfile
+!/ProductAPI/cloudbuild.yaml
 
 # Các tệp quan trọng khác
 LICENSE
