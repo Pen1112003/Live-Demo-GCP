@@ -2,10 +2,15 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
+  # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/imposing-pager-459113-s2/product-api', '.']
+
+  # Step 2: Push Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/imposing-pager-459113-s2/product-api']
+
+  # Step 3: Deploy to Cloud Run in us-central1
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
