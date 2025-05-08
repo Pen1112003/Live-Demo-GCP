@@ -3,11 +3,11 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/imposing-pager-459113-s2/product-api', '.']
 
-  # Step 2: Push Docker image
+  # Step 2: Push Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/imposing-pager-459113-s2/product-api']
 
-  # Step 3: Deploy to Cloud Run in us-central1
+  # Step 3: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -17,7 +17,7 @@ steps:
       - '--image=gcr.io/imposing-pager-459113-s2/product-api'
       - '--region=us-central1'
       - '--platform=managed'
-      - '--allow-unauthenticated'  # Bỏ nếu cần bảo mật
+      - '--allow-unauthenticated'
 
 images:
   - 'gcr.io/imposing-pager-459113-s2/product-api'
