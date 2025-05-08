@@ -1,13 +1,11 @@
+options:
+  logsBucket: gs://your-logs-bucket-name
+
 steps:
-  # Step 1: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/imposing-pager-459113-s2/product-api', '.']
-
-  # Step 2: Push Docker image to Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/imposing-pager-459113-s2/product-api']
-
-  # Step 3: Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
