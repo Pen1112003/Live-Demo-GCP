@@ -1,13 +1,13 @@
 steps:
-  # Step 1: Build Docker image from ProductAPI directory
+  # Step 1: Build Docker image từ thư mục ProductAPI
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/imposing-pager-459113-s2/product-api', './ProductAPI']  # Chỉ rõ thư mục chứa Dockerfile
+    args: ['build', '-t', 'gcr.io/imposing-pager-459113-s2/product-api', './ProductAPI']
 
-  # Step 2: Push Docker image to Google Container Registry
+  # Step 2: Push Docker image lên Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/imposing-pager-459113-s2/product-api']
 
-  # Step 3: Deploy Docker image to Cloud Run in us-central1 region
+  # Step 3: Deploy Docker image lên Cloud Run tại khu vực us-central1
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -21,3 +21,8 @@ steps:
 
 images:
   - 'gcr.io/imposing-pager-459113-s2/product-api'
+
+# Cấu hình logs bucket để xử lý lỗi khi sử dụng service account
+options:
+  default_logs_bucket_behavior: 'REGIONAL_USER_OWNED_BUCKET'  # Tạo bucket logs tự động cho vùng
+
