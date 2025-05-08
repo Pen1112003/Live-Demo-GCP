@@ -1,5 +1,5 @@
 options:
-  logsBucket: gs://your-logs-bucket-name
+  logging: NONE
 
 steps:
   - name: 'gcr.io/cloud-builders/docker'
